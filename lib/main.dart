@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks_sample/src/riverpod_page.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final hellWorldProvider = Provider((_) => 'Hello World');
+import 'riverpod/home_page.dart';
+import 'riverpod/providers/navigator.dart';
 
 void main() {
   runApp(ProviderScope(
@@ -10,16 +11,16 @@ void main() {
   ));
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: useProvider(navigatorKeyProvider),
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home(),
+      home: const HomePage(),
     );
   }
 }
